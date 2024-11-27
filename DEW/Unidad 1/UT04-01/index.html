@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/DEW/UT04-01/style.css">
+    <title>Formulario con el Tel</title>
+</head>
+<body>
+    <form action="#" method="get">
+        <fieldset>
+            <h2>Datos Usuario</h2>
+            <hr>
+            <section id="section-1">
+                <article id="user-name">
+                    <label for="nombre">Nombre de Usuario</label>
+                    <br>
+                    <input type="text" id="nombre" name="nombre" placeholder="UserName" required>
+                </article>
+                <br>
+                <article id="user-password">
+                    <article>
+                        <label for="pass">Contraseña</label>
+                        <br>
+                        <input type="password" name="pass" id="pass" placeholder="Introduce Contraseña" required>
+                    </article>
+                    <article>
+                        <label for="show">Mostrar Contraseña</label>
+                        <input type="checkbox" name="show" id="show">
+                    </article>
+                </article>
+            </section>
+
+            <br><br>
+            <h2>Datos Personales</h2>
+            <hr>
+            <section id="section-2">
+                <article id="datos-1">
+                    <article>
+                        <label for="nombre-1">Nombre</label>
+                        <br>
+                        <input type="text" id="nombre-1" name="nombre-1" placeholder="Nombre" required>
+                    </article>
+                    <br>
+                    <article>
+                        <label for="apellido">Apellidos</label>
+                        <br>
+                        <input type="text" id="apellido" name="apellido" placeholder="Apellidos" required>
+                    </article>
+                </article>
+                <br>
+    
+                <br><br>
+    
+                <article id="datos-2">
+                    <article>
+                        <label for="tel">Teléfono</label>
+                        <br>
+                        <input type="text" id="tel" name="tel" placeholder="Ejem: (+34)922123123" required>
+                    </article>
+                    <br>
+                    <article>
+                        <label for="cod">Código Postal</label>
+                        <br>
+                        <input type="text" id="cod" name="cod" placeholder="38XXX" required>
+                    </article>
+                </article>
+    
+                <br><br>
+    
+                <article id="datos-3">
+                    <section>
+                        <label for="ID-type">DNI/NIE</label>
+                        <br>
+                        <select name="ID-type" id="ID-type">
+                            <option value="---" selected>---</option>
+                            <option value="DNI">DNI</option>
+                            <option value="NIE">NIE</option>
+                        </select>
+                        <input type="text" placeholder="DNI / NIE" disabled />
+                    </section>
+        
+                    <br><br>
+                    <section>
+                        <label for="cuenta-type">Crear cuenta como:</label>
+                        <br>
+                        <input type="radio" id="cuenta" name="cuenta" value="Particular">
+                        <label>Particular</label>
+                        <input type="radio" id="cuenta" name="cuenta" value="Empresa">
+                        <label>Empresa</label>
+                    </section>
+        
+                    <br>
+                    <br>
+                    <section>
+                        <label for="year">Año de Nacimiento</label>
+                        <br>
+                        <select name="year" id="year">
+                            <option value="2010">2010</option>
+                            <option value="2009">2009</option>
+                            <option value="2008">2008</option>
+                        </select>
+                    </section>
+                </article>
+    
+                <br><br><br>
+                
+                <article id="datos-4">
+                    <label for="games">Elige tus aficiones:</label>
+                    <br>
+                    <section>
+                        <article>
+                            <input type="checkbox" id="aficion1" name="música" value="música">
+                            <label for="aficion1">Música</label>
+                        </article>
+                        <article>
+                            <input type="checkbox" id="aficion2" name="deporte" value="deporte">
+                            <label for="aficion2">Deporte</label>
+                        </article>
+                        <article>
+                            <input type="checkbox" id="aficion3" name="videojuegos" value="videojuegos">
+                            <label for="aficion3">Videojuegos</label>
+                        </article>
+                    </section>
+                    <section>
+                        <article>
+                            <input type="checkbox" id="aficion4" name="manualidades" value="manualidades">
+                            <label for="aficion4">Manualidades</label>
+                        </article>
+                        <article>
+                            <input type="checkbox" id="aficion5" name="artes" value="artes">
+                            <label for="aficion5">Artes</label>
+                        </article>
+                        <article>
+                            <input type="checkbox" id="aficion6" name="lectura" value="lectura">
+                            <label for="aficion6">Lectura</label>
+                        </article>
+                    </section>
+                </article>
+            </section>
+
+            <br><br>
+            <h2>Datos Publicación</h2>
+            <hr>
+            <section id="section-3">
+                <label for="titulo">Título</label>
+                <br>
+                <input type="text" name="titulo" id="titulo" placeholder="Título" minlength="0" maxlength="15" required>
+                <br><br>
+                <label for="descripcion">Descripción</label>
+                <br>
+                <textarea id="descripcion" name="descripcion" cols="60" rows="5" placeholder="Descripción" minlength="0" maxlength="120" required></textarea>
+            </section>
+        </fieldset>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
