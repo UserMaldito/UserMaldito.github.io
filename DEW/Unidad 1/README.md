@@ -1,8 +1,4 @@
-# Thoughts Collections
-
-## DEW
-
-### Unidad 1: Fundamentos de JS (Java Script)
+# Unidad 1: Fundamentos de JS (Java Script)
 
 #### 1.1 Variables (guardar datos en memoria con un nombre en específico):
 	- Let: funciona dentro de un ámbito {}, fuera de éste no existe

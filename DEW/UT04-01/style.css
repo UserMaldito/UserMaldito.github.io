@@ -1,0 +1,45 @@
+body{
+    background-color: pink;
+    #section-1{
+        padding: 30px -30px;
+        display: flex;
+        justify-content: space-evenly;
+        >#user-password{
+            display: inherit;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+    #section-2{
+        padding: 30px -30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        >#datos-1, #datos-2{
+            display: inherit;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin: 20px;
+        }
+        >#datos-3{
+            display: inherit;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin: 20px;
+        }
+        #datos-4{
+            display: inherit;
+            flex-direction: column;
+            section{
+                display: inherit;
+                justify-content: space-around;
+                margin: 20px 0 0 0;
+                align-items: center;
+            }
+        }
+
+    }
+    input:invalid{
+        background-color: red;
+    }
+}
