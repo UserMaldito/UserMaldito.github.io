@@ -1,5 +1,5 @@
 # UserHub
-In this part of the internet User is gonna (try to) teach something about programming(spanish + english)
+In this part of the internet User is gonna (try to) teach something about programming (spanish + english)
 
 [FAQ here](/faq.md)
 <ul>
