@@ -1,5 +1,14 @@
 body{
-    background-color: pink;
+    form{
+        display: flex;
+        flex-direction: row;
+
+        fieldset{
+            border: 3px solid red;
+            width: 40%;
+        }
+    }
+    /* background-color: pink; */
     #section-1{
         padding: 30px -30px;
         display: flex;
@@ -40,6 +49,6 @@ body{
 
     }
     input:invalid{
-        background-color: red;
+        border-color: red;
     }
 }
