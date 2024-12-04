@@ -23,11 +23,11 @@
                         <article>
                             <label for="Contrasena">Contraseña</label>
                             <br>
-                            <input type="password" name="Contrasena" id="Contrasena" placeholder="Introduce Contraseña" required pattern="/[\d]{8}/gmA" >
+                            <input type="password" name="Contrasena" id="Contrasena" placeholder="Introduce Contraseña" required pattern="[\d]{8}" >
                         </article>
                         <article>
                             <label for="show">Mostrar Contraseña</label>
-                            <input type="checkbox" name="show" id="show">
+                            <input type="checkbox" id="show">
                         </article>
                     </article>
                 </section>
@@ -57,13 +57,13 @@
                         <article>
                             <label for="Telefono">Teléfono</label>
                             <br>
-                            <input type="text" id="Telefono" name="Telefono" placeholder="Ejem: (+34)922123123" required pattern="/\((\+[\d]{1,3})\)([\d]{9})/gmA">
+                            <input type="text" id="Telefono" name="Telefono" placeholder="Ejem: (+34)922123123" required pattern="\((\+[\d]{1,3})\)([\d]{9})">
                         </article>
                         <br>
                         <article>
                             <label for="CodigoPostal">Código Postal</label>
                             <br>
-                            <input type="text" id="CodigoPostal" name="CodigoPostal" placeholder="38XXX" required pattern="/38[\d]{3}/gmA">
+                            <input type="text" id="CodigoPostal" name="CodigoPostal" placeholder="38XXX" required pattern="38[\d]{3}">
                         </article>
                     </article>
         
@@ -74,21 +74,22 @@
                             <label for="TipoDocumento">DNI/NIE</label>
                             <br>
                             <select name="TipoDocumento" id="TipoDocumento">
-                                <option value="---" selected>---</option>
+                                <option value="---" selected disabled>Tipo Documento</option>
                                 <option value="DNI">DNI</option>
                                 <option value="NIE">NIE</option>
                             </select>
-                            <input name="DniNie" type="text" placeholder="DNI / NIE" disabled />
+                            <input type="text" id="DniNie" name="DniNie" placeholder="DNI / NIE" required pattern="([A-Z]{1})?([\d]{7,8})([A-Z]{1})" />
                         </section>
             
                         <br><br>
                         <section>
-                            <label for="CuentaComo">Crear cuenta como:</label>
+                            <span>Crear cuenta como:</span>
                             <br>
-                            <input type="radio" id="Particular" name="cuenta" value="Particular">
-                            <label>Particular</label>
-                            <input type="radio" id="Empresa" name="cuenta" value="Empresa">
-                            <label>Empresa</label>
+                            <input type="radio" id="Particular" name="CuentaComo" value="Particular">
+                            <label for="Particular">Particular</label>
+
+                            <input type="radio" id="Empresa" name="CuentaComo" value="Empresa">
+                            <label for="Empresa">Empresa</label>
                         </section>
             
                         <br>
@@ -97,6 +98,7 @@
                             <label for="AnioNacimiento">Año de Nacimiento</label>
                             <br>
                             <select id="AnioNacimiento" name="AnioNacimiento" id="year" required>
+                                <option value="---" selected disabled>Año Nacimiento</option>
                                 <option value="2010">2010</option>
                                 <option value="2009">2009</option>
                                 <option value="2008">2008</option>
@@ -109,32 +111,32 @@
                     <article id="datos-4">
                         <label for="Aficiones">Elige tus aficiones:</label>
                         <br>
-                        <input type="hidden" id="Aficiones" name="Aficiones">
+                        <input type="hidden" id="Aficiones" name="Aficiones" >
                         <section>
                             <article>
-                                <input type="checkbox" id="aficion1" value="música">
+                                <input type="checkbox" id="aficion1" value="MU">
                                 <label for="aficion1">Música</label>
                             </article>
                             <article>
-                                <input type="checkbox" id="aficion2" value="deporte">
+                                <input type="checkbox" id="aficion2" value="DE">
                                 <label for="aficion2">Deporte</label>
                             </article>
                             <article>
-                                <input type="checkbox" id="aficion3" value="videojuegos">
+                                <input type="checkbox" id="aficion3" value="VI">
                                 <label for="aficion3">Videojuegos</label>
                             </article>
                         </section>
                         <section>
                             <article>
-                                <input type="checkbox" id="aficion4" value="manualidades">
+                                <input type="checkbox" id="aficion4" value="MA">
                                 <label for="aficion4">Manualidades</label>
                             </article>
                             <article>
-                                <input type="checkbox" id="aficion5" value="artes">
+                                <input type="checkbox" id="aficion5" value="AR">
                                 <label for="aficion5">Artes</label>
                             </article>
                             <article>
-                                <input type="checkbox" id="aficion6" value="lectura">
+                                <input type="checkbox" id="aficion6" value="LE">
                                 <label for="aficion6">Lectura</label>
                             </article>
                         </section>
