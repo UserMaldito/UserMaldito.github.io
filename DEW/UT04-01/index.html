@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/DEW/UT04-01/style.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Formulario con Validación Manual </title>
 </head>
 <body>
@@ -15,15 +15,15 @@
                 <section id="section-1">
                     <article id="user-name">
                         <label for="NombreUsuario">Nombre de Usuario</label>
-                        <br>
-                        <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="UserName" required minlength="4" maxlength="20">
+                        
+                        <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="UserName" required minlength="4" maxlength="20" value="UserMaldito">
                     </article>
-                    <br>
+                    
                     <article id="user-password">
                         <article>
                             <label for="Contrasena">Contraseña</label>
-                            <br>
-                            <input type="password" name="Contrasena" id="Contrasena" placeholder="Introduce Contraseña" required pattern="[\d]{8}" >
+                            
+                            <input type="password" name="Contrasena" id="Contrasena" placeholder="Introduce Contraseña" required pattern="[\d]{8}" value="12345678">
                         </article>
                         <article>
                             <label for="show">Mostrar Contraseña</label>
@@ -32,71 +32,71 @@
                     </article>
                 </section>
     
-                <br><br>
+                
                 <h2>Datos Personales</h2>
                 <hr>
                 <section id="section-2">
                     <article id="datos-1">
                         <article>
                             <label for="Nombre">Nombre</label>
-                            <br>
-                            <input type="text" id="Nombre" name="Nombre" placeholder="Nombre" required minlength="4" maxlength="20">
+                            
+                            <input type="text" id="Nombre" name="Nombre" placeholder="Nombre" required minlength="4" maxlength="20" value="User">
                         </article>
-                        <br>
+                        
                         <article>
                             <label for="Apellidos">Apellidos</label>
-                            <br>
-                            <input type="text" id="Apellidos" name="Apellidos" placeholder="Apellidos" required minlength="4" maxlength="20">
+                            
+                            <input type="text" id="Apellidos" name="Apellidos" placeholder="Apellidos" required minlength="4" maxlength="20" value="Maldito">
                         </article>
                     </article>
-                    <br>
+                    
         
-                    <br><br>
+                    
         
                     <article id="datos-2">
                         <article>
                             <label for="Telefono">Teléfono</label>
-                            <br>
-                            <input type="text" id="Telefono" name="Telefono" placeholder="Ejem: (+34)922123123" required pattern="\((\+[\d]{1,3})\)([\d]{9})">
+                            
+                            <input type="text" id="Telefono" name="Telefono" placeholder="Ejem: (+34)922123123" required pattern="\((\+[\d]{1,3})\)([\d]{9})" value="(+34)656609584">
                         </article>
-                        <br>
+                        
                         <article>
                             <label for="CodigoPostal">Código Postal</label>
-                            <br>
-                            <input type="text" id="CodigoPostal" name="CodigoPostal" placeholder="38XXX" required pattern="38[\d]{3}">
+                            
+                            <input type="text" id="CodigoPostal" name="CodigoPostal" placeholder="38XXX" required pattern="38[\d]{3}" value="38656">
                         </article>
                     </article>
         
-                    <br><br>
+                    
         
                     <article id="datos-3">
                         <section>
                             <label for="TipoDocumento">DNI/NIE</label>
-                            <br>
+                            
                             <select name="TipoDocumento" id="TipoDocumento">
                                 <option value="---" selected disabled>Tipo Documento</option>
                                 <option value="DNI">DNI</option>
                                 <option value="NIE">NIE</option>
                             </select>
-                            <input type="text" id="DniNie" name="DniNie" placeholder="DNI / NIE" required pattern="([A-Z]{1})?([\d]{7,8})([A-Z]{1})" />
+                            <input type="text" id="DniNie" name="DniNie" placeholder="DNI / NIE" required pattern="([A-Z]{1})?([\d]{7,8})([A-Z]{1})" value="X12345678Z"/>
                         </section>
             
-                        <br><br>
+                        
                         <section>
                             <span>Crear cuenta como:</span>
-                            <br>
-                            <input type="radio" id="Particular" name="CuentaComo" value="Particular">
+                            
+                            <input type="radio" id="Particular" name="CuentaComo" value="Particular" checked>
                             <label for="Particular">Particular</label>
 
                             <input type="radio" id="Empresa" name="CuentaComo" value="Empresa">
                             <label for="Empresa">Empresa</label>
                         </section>
             
-                        <br>
-                        <br>
+                        
+                        
                         <section>
                             <label for="AnioNacimiento">Año de Nacimiento</label>
-                            <br>
+                            
                             <select id="AnioNacimiento" name="AnioNacimiento" id="year" required>
                                 <option value="---" selected disabled>Año Nacimiento</option>
                                 <option value="2010">2010</option>
@@ -106,15 +106,15 @@
                         </section>
                     </article>
         
-                    <br><br><br>
+                    
                     
                     <article id="datos-4">
                         <label for="Aficiones">Elige tus aficiones:</label>
-                        <br>
+                        
                         <input type="hidden" id="Aficiones" name="Aficiones" >
                         <section>
                             <article>
-                                <input type="checkbox" id="aficion1" value="MU">
+                                <input type="checkbox" id="aficion1" value="MU" checked>
                                 <label for="aficion1">Música</label>
                             </article>
                             <article>
@@ -122,13 +122,13 @@
                                 <label for="aficion2">Deporte</label>
                             </article>
                             <article>
-                                <input type="checkbox" id="aficion3" value="VI">
+                                <input type="checkbox" id="aficion3" value="VI" checked>
                                 <label for="aficion3">Videojuegos</label>
                             </article>
                         </section>
                         <section>
                             <article>
-                                <input type="checkbox" id="aficion4" value="MA">
+                                <input type="checkbox" id="aficion4" value="MA" checked>
                                 <label for="aficion4">Manualidades</label>
                             </article>
                             <article>
@@ -136,34 +136,39 @@
                                 <label for="aficion5">Artes</label>
                             </article>
                             <article>
-                                <input type="checkbox" id="aficion6" value="LE">
+                                <input type="checkbox" id="aficion6" value="LE" checked>
                                 <label for="aficion6">Lectura</label>
                             </article>
                         </section>
                     </article>
                 </section>
     
-                <br><br>
+                
                 <h2>Datos Publicación</h2>
                 <hr>
                 <section id="section-3">
-                    <label for="PublicacionTitulo">Título</label>
-                    <br>
-                    <input type="text" name="PublicacionTitulo" id="PublicacionTitulo" placeholder="Título" minlength="0" maxlength="15" required>
-                    <br><br>
-                    <label for="PublicacionDescripcion">Descripción</label>
-                    <br>
-                    <textarea id="PublicacionDescripcion" name="PublicacionDescripcion" cols="60" rows="5" placeholder="Descripción" minlength="0" maxlength="120" required></textarea>
+                    <article>
+                        <label for="PublicacionTitulo">Título</label>
+                        
+                        <input type="text" name="PublicacionTitulo" id="PublicacionTitulo" placeholder="Título" minlength="0" maxlength="15" required value="Whatever...">
+                    </article>
+                    <article>
+                        <label for="PublicacionDescripcion">Descripción</label>
+                        
+                        <textarea id="PublicacionDescripcion" name="PublicacionDescripcion" cols="60" rows="5" placeholder="Descripción" minlength="0" maxlength="120" required wrap="hard">
+Esto es un MALDITO mensaje de prueba &lt;:D
+                        </textarea>
+                    </article>
                 </section>
-                <br>
+                
                 <button type="submit">Enviar</button>
             </fieldset>
-            <br>
+            
             <fieldset>
 
             </fieldset>
         </form>
     </section>
-    <script src="/DEW/UT04-01/script.js"></script>
+    <script type="module" src="./script.js"></script>
 </body>
 </html>

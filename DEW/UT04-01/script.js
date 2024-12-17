@@ -19,14 +19,32 @@ const DOM = {
 };
 
 let ErrorObjeto = {
-    campo,
+    campo: null,
     mensaje: ""
 };
 //Valida: NombreUsuario, Nombre, Apellido, AnioNacimiento, Telefono, Contraseña, CodigoPostal, PublicacionTitulo y PublicacionDescripcion.
 let RatificandoDatos = (campo) => {
     if (!campo.validity.valid) {
         ErrorObjeto.campo = campo;
-        ErrorObjeto.mensaje = "Error Campo " + campo.name + ": " + campo.validationMessage;
+        let campoExample = document.getElementById("NombreUsuario");
+        switch (true) {
+            case (campoExample.validity.valueMissing):
+                ErrorObjeto.mensaje = "El campo está vacío...";
+                break;
+            case (campoExample.validity.patternMismatch || campoExample.validity.badInput || campoExample.validity.stepMissmatch || campoExample.validity.typeMissmatch):
+                ErrorObjeto.mensaje = "El campo no está formado válidamente...";
+                break;
+            case (campoExample.validity.rangeOverflow || campoExample.validity.tooLong):
+                ErrorObjeto.mensaje = "Te me pasaste de caracteres...";
+                break;
+            case (campoExample.validity.rangeUnderflow || campoExample.validity.tooShort):
+                ErrorObjeto.mensaje = "Te quedaste corto de caracteres...";
+                break;
+            default:
+                ErrorObjeto.mensaje = "Campo mal formado...";
+                break;
+        }
+
         throw (ErrorObjeto);
     }
     return true;
@@ -40,36 +58,43 @@ let RatificandoDNINIE = (campoDocumento, valorDocumento) => {
         let digitoControl = 0;
         var numeroDni = valorDocumento.value.slice(0, valorDocumento.value.length - 1);
 
-        if (campoDocumento.value == "NIE") {
-            let primeraLetraDni = valorDocumento.value.slice(0, 1).toUpperCase();
-            switch (primeraLetraDni) {
-                case "X":
-                    digitoControl = 0;
-                    break;
-                case "Y":
-                    digitoControl = 1;
-                    break;
-                case "Z":
-                    digitoControl = 2;
-                    break;            
-                default:
-                    ErrorObjeto.campo = campo;
-                    ErrorObjeto.mensaje = "Error Campo " + campoDocumento.name + ": " + "Primera Letra del NIE No Válido";
-                    throw (ErrorObjeto);
+        if (campoDocumento.value != "---") {
+            if (campoDocumento.value == "NIE") {
+                let primeraLetraDni = valorDocumento.value.slice(0, 1).toUpperCase();
+                switch (primeraLetraDni) {
+                    case "X":
+                        digitoControl = 0;
+                        break;
+                    case "Y":
+                        digitoControl = 1;
+                        break;
+                    case "Z":
+                        digitoControl = 2;
+                        break;            
+                    default:
+                        ErrorObjeto.campo = campoDocumento;
+                        ErrorObjeto.mensaje = "Primera Letra del NIE No Válido";
+                        throw (ErrorObjeto);
+                }
+                
+                numeroDni = valorDocumento.value
+                .replace(valorDocumento.value[0], digitoControl)
+                .slice(0, valorDocumento.value.length - 1);
             }
-            
-            numeroDni = valorDocumento.value
-            .replace(valorDocumento.value[0], digitoControl)
-            .slice(0, valorDocumento.value.length - 1);
+    
+            let letraDNI = valorDocumento.value.slice(valorDocumento.value.length - 1, valorDocumento.value.length).toUpperCase();
+            let restoNumeroDni = (numeroDni) % 23;
+            let letraCalculada = ARRAY_LETRAS_DNI[restoNumeroDni];
+    
+            if (letraCalculada != letraDNI) {
+                ErrorObjeto.campo = campoDocumento;
+                ErrorObjeto.mensaje = "DNI/NIE No Válido";
+                throw (ErrorObjeto);
+            }
         }
-
-        let letraDNI = valorDocumento.value.slice(valorDocumento.value.length - 1, valorDocumento.value.length).toUpperCase();
-        let restoNumeroDni = (numeroDni) % 23;
-        let letraCalculada = ARRAY_LETRAS_DNI[restoNumeroDni];
-
-    if (letraCalculada != letraDNI) {
-            ErrorObjeto.campo = campo;
-            ErrorObjeto.mensaje = "Error Campo " + campoDocumento.name + ": " + "DNI/NIE No Válido";
+        else{
+            ErrorObjeto.campo = campoDocumento;
+            ErrorObjeto.mensaje = "Debe elegir 1 Tipo de Documento";
             throw (ErrorObjeto);
         }
     }
@@ -85,7 +110,7 @@ let RatificandoCuenta = (campo) => {
 
     if (tipoCuenta == "") {
         ErrorObjeto.campo = campo;
-        ErrorObjeto.mensaje = "Error Campo " + campo.name + ": Debe elegir al menos 1 Tipo de Cuenta";
+        ErrorObjeto.mensaje = "Debe elegir al menos 1 Tipo de Cuenta";
         throw (ErrorObjeto);
     }
 
@@ -100,7 +125,7 @@ let VerificandoAficiones = (checkboxArray, campo) => {
 
     if (aficiones.length < 2) {
         ErrorObjeto.campo = campo;
-        ErrorObjeto.mensaje = "Error Campo " + campo.name + ": Debe seleccionar un mínimo de 2 " + campo.name;
+        ErrorObjeto.mensaje = "Debe seleccionar un mínimo de 2 " + campo.name;
         throw (ErrorObjeto);
     }
 
@@ -109,19 +134,25 @@ let VerificandoAficiones = (checkboxArray, campo) => {
 let MostrarErrorPersonal = (mensaje) => {
     let cajaError = document.createElement("span");
     cajaError.textContent = mensaje;
+    cajaError.classList.add("error");
     DOM.fieldsetError.appendChild(cajaError);
 };
 let MostrarErrorDefault = (objetoError) => {
     let cajaError = document.createElement("span");
-    cajaError.textContent = mensaje;
+    cajaError.textContent = objetoError.campo.validationMessage;
     objetoError.campo.insertAdjacentElement("afterend", cajaError);
 };
-let LimpiarError = () => {
+let LimpiarErrorPersonalizado = () => {
     DOM.fieldsetError.childNodes.forEach((nodo) => nodo.remove());
+};
+let LimpiarErrorDefault = () => {
+    document.querySelectorAll(".error")
+    .forEach((nodo) => nodo.remove);
 };
 
 let ValidadorFormulario = (e) => {
-    LimpiarError();
+    LimpiarErrorDefault();
+    LimpiarErrorPersonalizado();
     
     try {
         RatificandoDatos(DOM.nombreUsuario);
@@ -141,9 +172,9 @@ let ValidadorFormulario = (e) => {
         RatificandoDatos(DOM.publicacionTitulo);
         RatificandoDatos(DOM.publicacionDescripcion);
     } catch (errorObjeto) {
-        evento.preventDefault();
+        e.preventDefault();
 
-        MostrarErrorPersonal(errorObjeto);
+        MostrarErrorPersonal("Error Campo " + errorObjeto.campo.name + ": " +  errorObjeto.mensaje);
         MostrarErrorDefault(errorObjeto);
     }
 };
@@ -160,14 +191,11 @@ let ValidadorFormulario = (e) => {
     
 }
 )();
-
+export default ValidadorFormulario;
 /*
     Falta:
     - Desuso del Br en el HTML
-    - Parte Izq. mensaje por defecto / Parte Der. mensaje personalizado
-    - Cambiar ValorDocumento por DniNie
     - Implementar número de caracteres introducidos en los input finales
-    - Implementar cambio de Estado (de inválido a válido) en todos los campos
-    - Uso modular del ESM
-    - 
+    - Pensar en cómo mostrar error en los checkbox de Aficiones
+    - El apartado DNI/NIE comparte apartado de error
 */
