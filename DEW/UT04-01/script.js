@@ -150,7 +150,7 @@ let LimpiarErrorDefault = () => {
     .forEach((nodo) => nodo.remove);
 };
 
-let ValidadorFormulario = (e) => {
+const ValidadorFormulario = (e) => {
     LimpiarErrorDefault();
     LimpiarErrorPersonalizado();
     

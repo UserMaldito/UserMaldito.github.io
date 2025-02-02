@@ -7,6 +7,7 @@ import MisRutas from './enrutamiento/Index'
 import Lay_out_et from './Lay_out_et'
 import Grupo from './Componentes/Grupo'
 import Daw2 from './Componentes/Daw2'
+import CrearUsuarios from './Componentes/CrearUsuarios'
 
 createRoot(document.getElementById('root')).render(
 	// <StrictMode>
@@ -78,8 +79,9 @@ createRoot(document.getElementById('root')).render(
 					<p>Página No Encontrada...</p>
 				</div>
 			}/>
-		</Route>
+			</Route>
 		
+			<Route path='/grupo/CrearUsuario' element={<CrearUsuarios />}/>
 	</Routes>
 </BrowserRouter>
 )

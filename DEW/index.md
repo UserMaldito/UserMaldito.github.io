@@ -88,7 +88,7 @@
         </ul>
     </li>
     <li>
-        <a href="/DEW/Unidad 2/index.md">
+        <a href="/DEW/Unidad_2/index.md">
             Unidad 2: Definicion y Gestión de Colecciones y Objetos
         </a>
     </li>

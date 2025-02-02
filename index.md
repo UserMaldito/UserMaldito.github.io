@@ -1,11 +1,11 @@
 # UserHub
-In this part of the internet User is gonna (try to) teach something about programming in spanish (maybe a little bit of english too).
+User te va a enseñar programación básica (y no tan básica) en español :D
 
-[FAQ here](/faq.md)
+[Preguntas Frecuentes](/faq.md)
 <ul>
     <li>
         <a href="/DEW/index.md">
-            Client Side / Entorno Cliente
-        </a> 
+            DEW: Desarrollo Entorno Cliente
+        </a>
     </li>
 </ul>
