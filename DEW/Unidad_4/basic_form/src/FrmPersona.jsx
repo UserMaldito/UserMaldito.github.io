@@ -27,7 +27,7 @@ function FrmPersona({addPersona}) {
 	console.log(simplePersona);
 	
 	return (
-		<>
+		// <>
 		<form action='#' onSubmit={(e) => {
 			e.preventDefault();
 			addPersona(simplePersona);
@@ -69,7 +69,7 @@ function FrmPersona({addPersona}) {
 
 		<input type="submit" value="Agregar Persona" />
 		</form>
-		</>
+		/* </> */
 	)
 }
 export default FrmPersona

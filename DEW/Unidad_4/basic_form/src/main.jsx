@@ -53,35 +53,35 @@ createRoot(document.getElementById('root')).render(
 	// </BrowserRouter>
 	<BrowserRouter>
 	<Routes>
-		<Route path='/' element={
-			// <MisRutas.Inicio />
-			<Lay_out_et />
-		}>
-			<Route index element={<MisRutas.Inicio />} />
-			<Route path='/Centro' element={
-				<MisRutas.Centro />
-			} />
-			<Route path='/Ciclo' element={
-			<MisRutas.Ciclo />
-			}/>
-			<Route path='/Curso' element={
-				<MisRutas.Curso />
-			}/>
-			
-			<Route path='/Daw2' element={
-				<Daw2 />
-			}/>
-			<Route path='/grupo/:letra' element={<Grupo  />}/>
-
-			<Route path='*' element={
-				<div>
-					<h3>Error 404...</h3>
-					<p>Página No Encontrada...</p>
-				</div>
-			}/>
-			</Route>
-		
-			<Route path='/grupo/CrearUsuario' element={<CrearUsuarios />}/>
+	<Route path='/' element={
+		// <MisRutas.Inicio />
+		<Lay_out_et />
+	}>
+	<Route index element={<MisRutas.Inicio />} />
+	<Route path='/Centro' element={
+		<MisRutas.Centro />
+	} />
+	<Route path='/Ciclo' element={
+		<MisRutas.Ciclo />
+	}/>
+	<Route path='/Curso' element={
+		<MisRutas.Curso />
+	}/>
+	
+	<Route path='/Daw2' element={
+		<Daw2 />
+	}/>
+	<Route path='/grupo/:letra' element={<Grupo  />}/>
+	
+	<Route path='*' element={
+		<div>
+		<h3>Error 404...</h3>
+		<p>Página No Encontrada...</p>
+		</div>
+	}/>
+	</Route>
+	
+	<Route path='/grupo/CrearUsuario' element={<CrearUsuarios />}/>
 	</Routes>
-</BrowserRouter>
+	</BrowserRouter>
 )
