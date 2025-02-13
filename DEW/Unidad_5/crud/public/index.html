@@ -7,10 +7,20 @@
 </head>
 <body>
     <h1>DEW-Server alumnos-grupos</h1>
-    <ul id="alumnos">
-        <!-- Lista de alumnos cargada con AJAX -->
-    </ul>
-    <form action="#" method="post">
+    <table id="tabla_alumnos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Grupo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+
+        </tbody>
+    </table>
+    <form action="#" method="post" name="crud-form" id="crud-form">
         <fieldset>
             <legend>
                 Id del Alumno
@@ -30,15 +40,16 @@
                 Grupo del Alumno
             </legend>
             <label for="grupo">Grupo:</label>
-            <select name="grupo" id="grupo">
+            <select name="grupoSelect" id="grupoSelect">
                 <!-- Lista de grupos cargada con AJAX -->
-
+                <option value="A">A</option>
+                <option value="B">B</option>
             </select>
         </fieldset>
 
-        <button type="submit">Agregar Alumno</button>
-        <button type="submit">Modificar Alumno</button>
-        <button type="submit">Eliminar Alumno</button>
+        <button type="submit" value="Agregar">Agregar Alumno</button>
+        <button type="submit" value="Modificar">Modificar Alumno</button>
+        <button type="submit" value="Eliminar">Eliminar Alumno</button>
     </form>
     <script src="./script.js"></script>
 </body>

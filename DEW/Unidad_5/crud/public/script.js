@@ -1,152 +1,117 @@
+const API_URL = "http://localhost:3000/";
+const form = document.getElementById("crud-form");
+const tableBody = document.getElementById("table-body");
+const grupoInput = document.getElementById("grupo");
+const nombreInput = document.getElementById("nombre");
+const idInput = document.getElementById("id");
+const grupoSelectInput = document.getElementById("grupoSelect");
 
-const urlServer = "http://localhost:3000/";
+//Leer datos
+async function fetchItems() {
+    try {
+        const response = await fetch(API_URL + "alumnos");
+        const items = await response.json();
+        tableBody.innerHTML = "";
 
-( () => {
-    
-    selectGrupos();
+        items.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.id}</td>
+                <td>${item.nombre}</td>
+                <td>${item.grupo}</td>
+                <td>
+                    <button onclick="fetchItemById(${item.id})">Ver</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        alert("Error al obtener la lista:", error);
+        console.error("Error al obtener la lista:", error);
+    }
 }
-)();
 
-//Agregar Alumnos
-async function crud_Create(alumno){
-    await fetch(urlServer + "alumnos", {
+//Leer elemento
+async function fetchItemById(id) {
+    try {
+        const response = await fetch(API_URL + "alumnos/" + id);
+        const item = await response.json();
+        console.log("Alumno encontrado: ", item);
+        putThingsInTheForm(item);
+    } catch (error) {
+        console.error("Error al obtener el Alumno: ", error);
+    }
+}
+
+//Agregar elemento
+async function createItem(alumno) {
+    await fetch(API_URL + "alumnos", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(alumno)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.log(error);
+        body: JSON.stringify( alumno ),
+        headers: { "Content-Type": "application/json" }
     });
 }
 
-//Listar Alumnos
-async function crud_ReadAll(){
-    let listado = [];
-
-    await fetch(urlServer + "alumnos")
-    .then(response => response.json())
-    .then(data => {
-        listado = data;
-    })
-    .catch(error => {
-        console.log(error);
-    });
-
-    return listado;
-}
-
-//Buscar Alumnos por ID
-async function crud_ReadById(id){
-    let alumno = null;
-
-    await fetch(urlServer + "alumnos/" + id)
-    .then(response => response.json())
-    .then(data => {
-        alumno = data;
-    })
-    .catch(error => {
-        console.log(error);
-    });
-
-    return alumno;
-}
-
-//Actualizar Alumnos
-async function crud_Update(alumno){
-    await fetch(urlServer + "alumnos/" + alumno.id, {
+//Actualizar elemento
+async function updateItem(alumno) {
+    await fetch(`${API_URL}alumnos/${alumno.id}`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(alumno)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.log(error);
+        body: JSON.stringify( alumno ),
+        headers: { "Content-Type": "application/json" }
     });
 }
 
-//Eliminar Alumnos
-async function crud_Delete(id){
-    await fetch(urlServer + "alumnos/" + id, {
-        method: "DELETE"
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.log(error);
+//Eliminar elemento
+async function deleteItem(id) {
+    const borrarObjeto = await fetch(`${API_URL}alumnos/${id}`, { method: "DELETE" });
+    if (borrarObjeto.status != "OK") {
+        alert("Error: Alumno no Existente")
+    }
+}
+
+//Manejar formulario (Crear / Editar / Eliminar)
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const alumno = {
+        id: idInput.value.trim().toString(),
+        nombre: nombreInput.value.trim().toString(),
+        grupo: grupoInput.value.trim().toString()
+    };
+
+    if (e.submitter.value === "Modificar") {
+        await updateItem(alumno);
+    }
+    if (e.submitter.value === "Agregar") {
+        await createItem(alumno);
+    }
+    if (e.submitter.value === "Eliminar") {
+        await deleteItem(alumno.id);
+    }
+
+    fetchItems(); // Recargar lista
+});
+
+//Poner los datos en el formulario
+function putThingsInTheForm(object){
+    idInput.value = object.id;
+    grupoInput.value = object.grupo;
+    nombreInput.value = object.nombre;
+}
+
+//Cargar opciones al select de Grupos
+async function dynamicSelect(){
+    const select = document.getElementById('grupoSelect');
+    const options = await fetch(API_URL + "grupos").then(response => response.json());
+    options.forEach(option => {
+        const newOption = document.createElement('option');
+        newOption.text = option;
+        newOption.value = option;
+        select.appendChild(newOption);
     });
 }
 
-async function crud_ReadGrupos(){
-    let grupos = [];
 
-    await fetch(urlServer + "grupos")
-    .then(response => response.json())
-    .then(data => {
-        grupos = data;
-    })
-    .catch(error => {
-        console.log(error);
-    });
 
-    return grupos;
-}
-
-function MostrarListado(){
-    let listado = crud_ReadAll();
-    let tabla = document.getElementById("tabla_alumnos");
-    tabla.innerHTML = "";
-    listado.forEach(alumno => {re
-        let fila = tabla.insertRow();
-        let celda = fila.insertCell();
-        celda.textContent = alumno.id;
-        celda = fila.insertCell();
-        celda.textContent = alumno.nombre;
-        celda = fila.insertCell();
-        celda.textContent = alumno.grupo;
-        celda = fila.insertCell();
-        let botones = celda.insertCell();
-        let btnVer = document.createElement("button");
-        btnEdit.textContent = "Detalles";
-        let btnEditar = document.createElement("button");
-        btnEdit.textContent = "Editar";
-        let btnBorrar = document.createElement("button");
-        btnEdit.textContent = "Borrar";
-        botones.appendChild(btnVer);
-        botones.appendChild(btnEditar);
-        botones.appendChild(btnBorrar);
-        btnVer.addEventListener("click", () => {
-            MostrarDetalles(alumno.id);
-        });
-        btnEditar.addEventListener("click", () => {
-            MostrarEdicion(alumno);
-        });
-        btnBorrar.addEventListener("click", () => {
-            BorrarAlumno(alumno.id);
-        });
-        
-    });
-}
-function selectGrupos(){
-    let select = document.getElementById("select_grupos");
-    let grupos = crud_ReadGrupos();
-
-    grupos.forEach(grupo => {
-        let option = document.createElement("option");
-        option.value = grupo.id;
-        option.text = grupo.descripcion;
-        select.appendChild(option);
-    });
-}
+// Cargar datos al iniciar
+fetchItems();
+// dynamicSelect();
